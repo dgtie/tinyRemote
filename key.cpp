@@ -4,6 +4,8 @@
 //////////////////////////////////////
 // This file MUST be compiled with -O0
 
+extern bool shift;
+
 char delay;
 void usart0();
 bool getDuty();
@@ -19,7 +21,7 @@ Service tca0([](){
       PORTA.OUTSET = PIN7_bm;
     } else {
       TCB0.CCMPH = 0;
-      PORTA.OUTCLR = PIN7_bm;
+      if (!shift) PORTA.OUTCLR = PIN7_bm;
     }
     if (delay)
       if (!--delay) {
