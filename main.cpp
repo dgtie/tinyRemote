@@ -18,11 +18,14 @@
 
 namespace user {
 void power(), mute(), vol_up(), vol_down(), ch_up(), ch_down();
+void input(), k31(), k32(), k77(), k99();
 }
 
 extern char delay;
 extern Service tca0;
 void usart0(int), learn();
+
+bool shift;
 
 void __attribute__((naked, section(".init3"))) init(void) {
   PORTA.DIRSET = PIN7_bm | PIN5_bm | PIN3_bm | PIN2_bm | PIN1_bm;
@@ -65,15 +68,32 @@ int main(void) {
   while ((SLPCTRL.CTRLA = SLPCTRL_SMODE_PDOWN_gc | SLPCTRL_SEN_bm)) {
     if (ukey != ikey) {
       ukey = ikey;
-      switch (ukey & 7) {	// remove toggle bit
       using namespace user;
-      case 0: vol_down(); break;	// ^^^^
-      case 1: ch_down(); break;		// |  |
-      case 2: ch_up(); break;		// 3  4
-      case 3: power(); break;		// 2  5
-      case 4: mute(); break;		// 1  0
-      case 5: vol_up(); break;		// ----
-      default:;
+      if (shift) {
+        shift = false;
+        switch (ukey & 7) {	// remove toggle bit
+        case 0: k99(); break;		// ^^^^
+        case 1: k77(); break;		// |  |
+        case 2: k31(); break;		// 3  4
+        case 3: mute(); break;		// 2  5
+        case 4: power(); break;		// 1  0
+        case 5: k32(); break;		// ----
+        default:;
+        }
+        PORTA.OUTCLR = PIN7_bm;
+      } else {
+        switch (ukey & 7) {	// remove toggle bit
+        using namespace user;
+        case 0: vol_down(); break;	// ^^^^
+        case 1: ch_down(); break;	// |  |
+        case 2: ch_up(); break;		// 3  4
+        case 3: input(); break;		// 2  5
+        case 4: shift = true;
+                PORTA.OUTSET = PIN7_bm;
+                break;			// 1  0
+        case 5: vol_up(); break;	// ----
+        default:;
+        }
       }
     }
     if (!TCA0.SINGLE.CTRLA) asm("sleep");
