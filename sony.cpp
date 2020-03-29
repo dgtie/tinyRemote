@@ -4,7 +4,7 @@ namespace
 {
 
 void byte(char b, int s) {
-  for (int i = 0; i < s; i++) {
+  while (s--) {
     *ptr++ = b & 1 ? 0b11110011 : 0b11111001;
     b >>= 1;
   }
@@ -16,11 +16,8 @@ void sony(char c, char a, char e, char m) {
   *ptr++ = -1; *ptr++ = 83; *ptr++ = 24;
   *ptr++ = 0b11001111;
   byte(c, 7);
-  if (m != 15) byte(a, 5);
-  a = e;
+  if (m != 15) { byte(a, 5); a = e; }
   if (m != 12) byte(a, 8);
-  *ptr++ = 126; *ptr++ = 126;
-  *ptr = 0;
   transmit_();
 }
 

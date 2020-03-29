@@ -48,6 +48,7 @@ bool getDuty() {
 bool transmitting_() { return TCB0.CTRLA; }
 
 void transmit_() {
+  *ptr++ = 126; *ptr++ = 126; *ptr++ = 126; *ptr = 0;
   rptr = buffer;
   TCB0.CTRLA = TCB_ENABLE_bm;	// let go next()
   TCA0.SINGLE.CTRLA = TCA_SINGLE_CLKSEL_DIV1_gc | TCA_SINGLE_ENABLE_bm;

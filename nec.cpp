@@ -23,10 +23,6 @@ void nec(char a1, char a2, char c, int leading) {
   *ptr++ = (leading - 1) * 2 + 1; *ptr++ = 14;
   byte(a1); byte(a2); byte(c); byte(~c);
   *ptr++ = 0b11100001;
-//  *ptr++ = 76; *ptr++ = 76; *ptr++ = 31;
-//  *ptr++ = 0b10010000;
-  *ptr++ = 126; *ptr++ = 126;
-  *ptr = 0;
   transmit_();
 }
 
@@ -37,6 +33,6 @@ namespace user
 
 void nec(char a, char c) { ::nec(a, ~a, c, 16); }
 void nec_sc(short a, char c) { ::nec(a, a>>8, c, 16); }
-void samsung(char a, char c) { ::nec(a, ~a, c, 8); }
+void samsung(char a1, char a2, char c) { ::nec(a1, a2, c, 8); }
 
 }

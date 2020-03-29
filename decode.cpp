@@ -77,6 +77,7 @@ private:
 class : NEC {
 public:
   bool decode(int *buffer, int length) {
+    if (buffer[0] != 4) return false;
     int b;
     for (b = 1; b < length; b += 2) if (buffer[b] != 1) break;
     if ((b != 25) && (b != 31) && (b != 41)) return false;
@@ -201,7 +202,7 @@ int main() {
       cin >> s;
       buffer[index++] = s;
       if (!s) break;
-      if ((s < u + 100) && (s > u - 100)) { ua += s; ++uc; u = ua / uc; }
+      if ((s < u + 70) && (s > u - 70)) { ua += s; ++uc; u = ua / uc; }
       else if (s < u) { u = ua = s; uc = 1; };
     }
     if (index == 1) break;

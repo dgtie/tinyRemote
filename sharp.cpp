@@ -24,8 +24,6 @@ void sharp(char a, char c) {
   word(s);
   *ptr++ = 126; *ptr++ = 126;
   word(s ^ 0x7fe0);
-  *ptr++ = 126; *ptr++ = 126;
-  *ptr = 0;
   transmit_();
 }
 

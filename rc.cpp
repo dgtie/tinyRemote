@@ -32,8 +32,6 @@ void rc6(char a, char c, char mode) {
   bit(mode, 0b100);
   *ptr++ = (t ^= 0b1111);
   byte(a); byte(c);
-  *ptr++ = 126; *ptr++ = 126;
-  *ptr = 0;
   transmit_();
 }
 
