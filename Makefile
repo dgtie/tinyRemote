@@ -6,7 +6,7 @@ SIZE = $(BIN)/avr-size
 UPDI = /home/sylam/pyupdi/pyupdi.py
 
 SRC = main.cpp code.cpp kernel.cpp usart.cpp \
-      nec.cpp sharp.cpp sony.cpp rc.cpp remote.cpp
+      nec.cpp sharp.cpp sony.cpp remote.cpp rc.cpp
 OBJ = $(SRC:.cpp=.o)
 
 TARGET = out

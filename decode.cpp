@@ -192,6 +192,51 @@ bool rc6(int *buffer) {
   return true;
 }
 
+class RC5 {
+public:
+  bool decode(int* buffer) {
+    if (*buffer != 1) return false;
+    setBuffer(&buffer[1], false);
+    if (readbit() != 1) return false;	// start bit
+    if (readbit() < 0) return false;	// toggle bit
+    int a = readbits(5);
+    if (a < 0) return false;
+    int c = readbits(6);
+    if (c < 0) return false;
+    if (*ptr) return false;
+    cout << "RC5: " << a << ", " << c << endl;
+    return true;
+  }
+private:
+  int data, *ptr;
+  bool mark;
+  void setBuffer(int *p, bool m) { ptr = p; data = 0; mark = m; }
+  bool readmark() {
+    if (!*ptr) return false;
+    bool m = mark;
+    if (++data == *ptr) { data = 0; ++ptr; mark = !mark; }
+    return m;
+  }
+  int readbit() {
+    if (!*ptr) return -1;	// end of data
+    bool a, b;
+    a = readmark(); b = readmark();
+    if (a && b) return -2;	// 11
+    if (a || b) return b ? 1 : 0;
+    else return -3;		// 00
+  }
+  int readbits(int i) {
+    int b = 0, c;
+    while (i--) {
+      b <<= 1;
+      c = readbit();
+      if (c < 0) return -1;
+      if (c) b++;
+    }
+    return b;
+  }
+} rc5;
+
 int main() {
   int u, buffer[100], index, uc, ua;
   unsigned short s;
@@ -218,6 +263,7 @@ int main() {
     if (nec.decode(buffer, index));
     else if (sony.decode(buffer, index));
     else if (sharp.decode(buffer, index));
+    else if (rc5.decode(buffer));
     else if (rc6(buffer));
     else {
       index = 0;

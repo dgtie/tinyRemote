@@ -9,6 +9,7 @@ void sharp(char a, char c);
 void sony12(char c, char a);
 void sony15(char c, char a);
 void sony20(char c, char a, char e);
+void rc5(char a, char c);
 void rc6(char a, char c, char m);
 
 }
@@ -23,6 +24,7 @@ void k1() {
   nec(4,17);		// LG
   nec(64,1);		// TOSHIBA
   samsung(7,7,4);
+  rc5(0,1);
   sony12(0,1);
 }
 
@@ -31,6 +33,7 @@ void k2() {
   nec(4,18);		// LG
   nec(64,2);		// TOSHIBA
   samsung(7,7,5);
+  rc5(0,2);
   sony12(1,1);
 }
 
@@ -39,6 +42,7 @@ void k3() {
   nec(4,19);		// LG
   nec(64,3);		// TOSHIBA
   samsung(7,7,6);
+  rc5(0,3);
   sony12(2,1);
 }
 
@@ -47,6 +51,7 @@ void k7() {
   nec(4,23);		// LG
   nec(64,7);		// TOSHIBA
   samsung(7,7,12);
+  rc5(0,7);
   sony12(6,1);
 }
 
@@ -55,6 +60,7 @@ void k9() {
   nec(4,25);		// LG
   nec(64,9);		// TOSHIBA
   samsung(7,7,14);
+  rc5(0,9);
   sony12(8,1);
 }
 
@@ -69,6 +75,7 @@ void power() {
   nec(4,8);	// LG
   nec(64,18);	// TOSHIBA
   samsung(7,7,2);
+  rc5(0,12);
   sony12(21,1);
 }
 
@@ -77,6 +84,7 @@ void ch_up() {
   nec(4,0);	// LG
   nec(64,27);	// TOSHIBA
   samsung(7,7,18);
+  rc5(0,32);
   sony12(16,1);
 }
 
@@ -85,6 +93,7 @@ void ch_down() {
   nec(4,1);	// LG
   nec(64,31);	// TOSHIBA
   samsung(7,7,16);
+  rc5(0,33);
   sony12(17,1);
 }
 
@@ -93,6 +102,7 @@ void mute() {
   nec(4,9);	// LG
   nec(64,16);	// TOSHIBA
   samsung(7,7,15);
+  rc5(0,13);
   sony12(20,1);
 }
 
@@ -101,6 +111,7 @@ void vol_up() {
   nec(4,2);	// LG
   nec(64,26);	// TOSHIBA
   samsung(7,7,7);
+  rc5(0,16);
   sony12(18,1);
 }
 
@@ -109,6 +120,7 @@ void vol_down() {
   nec(4,3);	// LG
   nec(64,30);	// TOSHIBA
   samsung(7,7,11);
+  rc5(0,17);
   sony12(19,1);
 }
 
@@ -117,6 +129,7 @@ void input() {
   nec(4,11);	// LG
   nec(64,15);	// TOSHIBA
   samsung(7,7,1);
+  rc5(0,56);
   sony12(37,1);
 }
 

@@ -3,6 +3,16 @@
 namespace
 {
 
+void rc5bit(char c) {
+  unsigned char b = 0b11111110;
+  int n = 3;
+  while (n--) {
+    b <<= 2; if (c & 1) b |= 2; else b++;
+    c >>= 1;
+  }
+  *ptr++ = b;
+}
+
 void bit(char c, int n) {
   unsigned char b = 0b11111110;
   while (n--) {
@@ -32,6 +42,19 @@ void rc6(char a, char c, char mode) {
   bit(mode, 0b100);
   *ptr++ = (t ^= 0b1111);
   byte(a); byte(c);
+  transmit_();
+}
+
+void rc5(char a, char c) {
+  static char toggle = 0;
+  toggle ^= 0b100000;
+  a |= toggle;
+  while (transmitting_());
+  ptr = buffer;
+  *ptr++ = -1; *ptr++ = 93; *ptr++ = 32;
+  *ptr++ = 0b11110101;
+  rc5bit(a>>3); rc5bit(a);
+  rc5bit(c>>3); rc5bit(c);
   transmit_();
 }
 
