@@ -88,7 +88,7 @@ int main(void) {
         case 1: ch_down(); break;	// |  |
         case 2: ch_up(); break;		// 3  4
         case 3: input(); break;		// 2  5
-        case 4: shift = 50000; break;	// 1  0
+        case 4: shift = 10000; break;	// 1  0
         case 5: vol_up(); break;	// ----
         default:;
         }
