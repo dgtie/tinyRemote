@@ -82,7 +82,6 @@ int main(void) {
         }
       } else {
         switch (ukey & 7) {	// remove toggle bit
-        using namespace user;
         case 0: vol_down(); break;	// ^^^^
         case 1: ch_down(); break;	// |  |
         case 2: ch_up(); break;		// 3  4
