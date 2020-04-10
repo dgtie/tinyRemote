@@ -8,6 +8,7 @@
 */
 
 extern char delay;
+extern unsigned int shift;
 signed char buffer[100], *ptr;
 
 namespace
@@ -29,7 +30,10 @@ signed char next() {
     rptr += 3;
   }
   rptr++;
-  if (!c) { rptr = 0; if (!delay) TCA0.SINGLE.CTRLA = 0; TCB0.CTRLA = 0; }
+  if (!c) {
+    rptr = 0;
+    if (!delay) if (!shift) TCA0.SINGLE.CTRLA = 0; TCB0.CTRLA = 0;
+  }
   return c;
 }
 
@@ -48,7 +52,7 @@ bool getDuty() {
 bool transmitting_() { return TCB0.CTRLA; }
 
 void transmit_() {
-  *ptr++ = 126; *ptr++ = 126; *ptr++ = 126; *ptr = 0;
+  *ptr++ = 126; *ptr++ = 126; *ptr = 0;
   rptr = buffer;
   TCB0.CTRLA = TCB_ENABLE_bm;	// let go next()
   TCA0.SINGLE.CTRLA = TCA_SINGLE_CLKSEL_DIV1_gc | TCA_SINGLE_ENABLE_bm;
