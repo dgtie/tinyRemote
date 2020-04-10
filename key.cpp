@@ -42,7 +42,7 @@ Service tca0([](){
     }
     if (delay) { if (!--delay) scan(); }
     else {
-      if (shift) { PORTA.OUTSET = PIN7_bm; shift++; }
+      if (shift) { PORTA.OUTSET = PIN7_bm; shift--; }
       else {
         if (!TCB0.CTRLA) {
           TCA0.SINGLE.CTRLA = 0;
