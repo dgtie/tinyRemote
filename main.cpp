@@ -80,7 +80,6 @@ int main(void) {
         case 5: k32(); break;		// ----
         default:;
         }
-        PORTA.OUTCLR = PIN7_bm;
       } else {
         switch (ukey & 7) {	// remove toggle bit
         using namespace user;
