@@ -21,7 +21,7 @@ flash: $(TARGET).hex
 	$(UPDI) -b115200 -c/dev/ttyUSB0 -dtiny414 -f$<
 
 clean:
-	rm -f $(OBJ) $(TARGET).hex $(TARGET).map $(TARGET).lst
+	rm -f *.o $(TARGET).hex $(TARGET).map $(TARGET).lst
 
 %.hex: %.elf
 	$(OBJDUMP) -S $< > $(TARGET).lst
@@ -33,5 +33,8 @@ clean:
 
 %.o: %.cpp
 	$(GPP) $(CFLAGS) -o $@ -c $<
+
+key.o: key.cpp
+	$(GPP) -mmcu=$(MCU) -O0 -o $@ -c $<
 
 .SECONDARY: $(OBJ)
