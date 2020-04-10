@@ -6,7 +6,7 @@ SIZE = $(BIN)/avr-size
 UPDI = /home/sylam/pyupdi/pyupdi.py
 
 SRC = main.cpp code.cpp kernel.cpp usart.cpp \
-      nec.cpp sharp.cpp sony.cpp remote.cpp rc.cpp
+      nec.cpp sharp.cpp sony.cpp remote.cpp rc.cpp key.cpp
 OBJ = $(SRC:.cpp=.o)
 
 TARGET = out
@@ -28,13 +28,10 @@ clean:
 	$(OBJCOPY) -O ihex -R .eeprom -R .fuse -R .lock -R .signature $< $@
 	$(SIZE) $<
 
-%.elf: $(OBJ) key.o
+%.elf: $(OBJ)
 	$(GPP) $(LDFLAGS) -o $@ $^
 
 %.o: %.cpp
 	$(GPP) $(CFLAGS) -o $@ -c $<
-
-key.o: key.cpp
-	$(GPP) -mmcu=$(MCU) -O0 -o $@ -c $<
 
 .SECONDARY: $(OBJ)

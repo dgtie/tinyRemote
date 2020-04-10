@@ -25,7 +25,7 @@ extern char delay;
 extern Service tca0;
 void usart0(int), learn();
 
-bool shift;
+unsigned int shift;
 
 void __attribute__((naked, section(".init3"))) init(void) {
   PORTA.DIRSET = PIN7_bm | PIN5_bm | PIN3_bm | PIN2_bm | PIN1_bm;
@@ -70,7 +70,7 @@ int main(void) {
       ukey = ikey;
       using namespace user;
       if (shift) {
-        shift = false;
+        shift = 0;
         switch (ukey & 7) {	// remove toggle bit
         case 0: k99(); break;		// ^^^^
         case 1: k77(); break;		// |  |
@@ -88,9 +88,7 @@ int main(void) {
         case 1: ch_down(); break;	// |  |
         case 2: ch_up(); break;		// 3  4
         case 3: input(); break;		// 2  5
-        case 4: shift = true;
-                PORTA.OUTSET = PIN7_bm;
-                break;			// 1  0
+        case 4: shift = 50000; break;	// 1  0
         case 5: vol_up(); break;	// ----
         default:;
         }
