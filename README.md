@@ -35,5 +35,5 @@ Baud rate is 115200. PC will receive BINARIES from tinyRemote representing the d
 b2str.cpp is to convert the binaries to readable text string. The output will be durations in us.\
 Decoding is done by PC (decode.cpp)\
 pronto.cpp converts pronto hex to durations stream that to be decoded by decode.cpp
-## Schematics
+## Schematic
 ![](DOC/schematic.png)
