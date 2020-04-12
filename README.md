@@ -29,9 +29,11 @@ Connect tinyRemote to PC using a USB2TTL module via UPDI port or UART port. UPDI
 UART port is used for reading infrared code. There is an infrared transistor near the LED indicator. Point your remote controller CLOSE to it. To enter reading mode:
 1. remove batteries
 2. power up tinyRemote via UART port
-3. IF SUCCESS, indicator will turn on. (It is a minor bug!)
+3. IF SUCCESS, indicator will turn on. (It is a minor bug! Upon startup, I check Rx pin. If it is high, enter reading mode.)
 
 Baud rate is 115200. PC will receive BINARIES from tinyRemote representing the durations of marks and spaces. ZERO means break. The timing unit is 4.8 us.\
 b2str.cpp is to convert the binaries to readable text string. The output will be durations in us.\
 Decoding is done by PC (decode.cpp)\
 pronto.cpp converts pronto hex to durations stream that to be decoded by decode.cpp
+## Schematic
+![](DOC/schematic.png)
