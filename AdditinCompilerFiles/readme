@@ -1,0 +1,6 @@
+header file goes to /usr/lib/avr/include/avr/
+others go to /usr/lib/gcc/avr/5.4.0/avrxmega3/short-calls/
+
+add the followings to /usr/lib/avr/include/avr/io.h at line 612
+#elif defined (__AVR_ATtiny414__)
+#  include <avr/iotn414.h>
