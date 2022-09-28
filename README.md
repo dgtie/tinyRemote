@@ -12,6 +12,7 @@ shift(power) |o  o| input(mute)
               UUUU
 
 Hit SHIFT and indicator will turn on. Then hit a button while indicator is on.
+
 It shall work for SHARP, LG and TOSHIBA.
 It shall also work for SONY, PHILIPS and SAMSUNG. (but not yet verified)
 ```
@@ -20,6 +21,8 @@ It shall also work for SONY, PHILIPS and SAMSUNG. (but not yet verified)
 ```
               ____
              |o  o| GND
+
+
       [UART] |o  o| 3V3
          GND |o  o| [UPDI]
          3V3 |____|
@@ -37,3 +40,5 @@ Decoding is done by PC (decode.cpp)\
 pronto.cpp converts pronto hex to durations stream that to be decoded by decode.cpp
 ## Schematic
 ![](DOC/schematic.png)
+https://user-images.githubusercontent.com/42087847/192790861-0ea7e591-97eb-486d-b9d1-ebd6bcc5e6a8.mp4
+
