@@ -1,3 +1,7 @@
+# This project is obsolete
+- please click [new tiny IR remote](https://github.com/dgtie/ATTINY414/tree/main/remote)
+
+
 # tinyRemote
 An infrared remote control with attiny414\
 powered by 2 x AAA
