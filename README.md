@@ -1,5 +1,5 @@
 # This project is obsolete
-- please click [new tiny IR remote](https://github.com/dgtie/ATTINY414/tree/main/remote)
+- please click [new tiny IR remote](https://github.com/dgtie/tinyRemote1/tree/main)
 
 
 # tinyRemote
@@ -25,8 +25,6 @@ It shall also work for SONY, PHILIPS and SAMSUNG. (but not yet verified)
 ```
               ____
              |o  o| GND
-
-
       [UART] |o  o| 3V3
          GND |o  o| [UPDI]
          3V3 |____|
